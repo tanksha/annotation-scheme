@@ -2507,6 +2507,15 @@
    )
 )
 
+ (EvaluationLink
+   (PredicateNode "expresses")
+   (ListLink
+      (GeneNode "MAPK8")
+      (MoleculeNode "Uniprot:P900")
+   )
+)
+
+
  (MemberLink
    (GeneNode "MAP2K4")
    (ConceptNode "R-HSA-5684264")
