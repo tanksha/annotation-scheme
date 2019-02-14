@@ -230,3 +230,36 @@
               )
             )
     ))))
+
+(define findProtInteractor
+  (lambda(gene)
+     (cog-execute! (BindLink
+	(VariableList
+ 		(VariableNode "$a")
+ 		(VariableNode "$b")
+ 		(VariableNode "$c"))
+ 	(And 
+    		(EvaluationLink
+       			(PredicateNode "interacts_with")
+         		(ListLink
+             		gene
+              		(VariableNode "$a")
+          	))
+    		(EvaluationLink
+       			(PredicateNode "expresses")
+          		(ListLink
+            		gene
+            		(VariableNode "$c")
+         	))
+		(EvaluationLink
+		       (PredicateNode "expresses")
+			  (ListLink
+			    (VariableNode "$a")
+			    (VariableNode "$b")
+			 )))
+		(EvaluationLink
+		   (PredicateNode "expresses")
+		       (ListLink
+			(VariableNode "$c")
+			(VariableNode "$b")))
+))))

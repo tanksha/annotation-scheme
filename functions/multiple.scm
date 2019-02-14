@@ -91,6 +91,17 @@
 (GeneNode "SPAG9")
 (GeneNode "PPP4R2")))
 
+(EvaluationLink
+(PredicateNode "interacts_with")
+(ListLink 
+(GeneNode "SOX4")
+(GeneNode "PPP4R2")))
+
+(EvaluationLink
+(PredicateNode "interacts_with")
+(ListLink 
+(GeneNode "PPP4R2")
+(GeneNode "SOX4")))
 
  (EvaluationLink
    (PredicateNode "expresses")

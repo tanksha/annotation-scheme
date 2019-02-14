@@ -1,0 +1,24 @@
+[2019-02-12 22:03:50:891] [INFO] [global_python_initialize] Start
+[2019-02-12 22:03:50:914] [INFO] [global_python_initialize] Adding OpenCog sys.path directories
+[2019-02-12 22:03:50:917] [INFO] [global_python_initialize] Finish
+[2019-02-12 22:03:50:918] [INFO] PythonEval::initialize_python_objects_and_imports Finished initialising python evaluator.
+[2019-02-13 15:49:04:833] [INFO] [global_python_initialize] Start
+[2019-02-13 15:49:04:859] [INFO] [global_python_initialize] Adding OpenCog sys.path directories
+[2019-02-13 15:49:04:863] [INFO] [global_python_initialize] Finish
+[2019-02-13 15:49:04:863] [INFO] PythonEval::initialize_python_objects_and_imports Finished initialising python evaluator.
+[2019-02-13 18:57:46:208] [INFO] [global_python_initialize] Start
+[2019-02-13 18:57:46:313] [INFO] [global_python_initialize] Adding OpenCog sys.path directories
+[2019-02-13 18:57:46:321] [INFO] [global_python_initialize] Finish
+[2019-02-13 18:57:46:322] [INFO] PythonEval::initialize_python_objects_and_imports Finished initialising python evaluator.
+[2019-02-13 18:59:07:695] [INFO] [global_python_initialize] Start
+[2019-02-13 18:59:07:720] [INFO] [global_python_initialize] Adding OpenCog sys.path directories
+[2019-02-13 18:59:07:723] [INFO] [global_python_initialize] Finish
+[2019-02-13 18:59:07:723] [INFO] PythonEval::initialize_python_objects_and_imports Finished initialising python evaluator.
+[2019-02-13 19:00:22:006] [INFO] [global_python_initialize] Start
+[2019-02-13 19:00:22:029] [INFO] [global_python_initialize] Adding OpenCog sys.path directories
+[2019-02-13 19:00:22:032] [INFO] [global_python_initialize] Finish
+[2019-02-13 19:00:22:032] [INFO] PythonEval::initialize_python_objects_and_imports Finished initialising python evaluator.
+[2019-02-14 01:05:31:142] [INFO] [global_python_initialize] Start
+[2019-02-14 01:05:31:188] [INFO] [global_python_initialize] Adding OpenCog sys.path directories
+[2019-02-14 01:05:31:193] [INFO] [global_python_initialize] Finish
+[2019-02-14 01:05:31:193] [INFO] PythonEval::initialize_python_objects_and_imports Finished initialising python evaluator.
