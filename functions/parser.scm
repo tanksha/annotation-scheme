@@ -390,7 +390,7 @@
   	(lambda (p)
 			(if (not (null? output))
 					(begin
-						(write result p)
+						(write output p)
 					)
 			)
 		)
