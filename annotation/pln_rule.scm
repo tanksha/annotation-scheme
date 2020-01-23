@@ -264,6 +264,51 @@
         )
     )
 )
+(define pathway_biogrid_crossannotation_rule
+    (BindLink
+        (VariableList
+            (TypedVariable (VariableNode "$g") (Type 'GeneNode))
+            (TypedVariable (VariableNode "$g1") (Type 'GeneNode))
+            (TypedVariable (VariableNode "$g2") (Type 'GeneNode))
+            (TypedVariable (VariableNode "$pw") (Type 'ConceptNode))
+            (TypedVariable (VariableNode "$p1") (Type 'MoleculeNode))
+            (TypedVariable (VariableNode "$p2") (Type 'MoleculeNode)))
+    (AndLink
+        (MemberLink (VariableNode "$g") (VariableNode "$pw"))
+        (MemberLink (VariableNode "$p1") (VariableNode "$pw"))
+        (MemberLink (VariableNode "$p2") (VariableNode "$pw"))
+        (EvaluationLink (PredicateNode "expresses") (ListLink (VariableNode "$g1") (VariableNode "$p1")))
+        (EvaluationLink (PredicateNode "expresses") (ListLink (VariableNode "$g2") (VariableNode "$p2")))
+        (EvaluationLink (PredicateNode "interacts_with") (ListLink (VariableNode "$g1") (VariableNode "$g2")))
+    )
+     (ExecutionOutputLink
+     (GroundedSchemaNode "scm: generate-interactors")
+	 	(ListLink
+             (VariableNode "$g")
+             (VariableNode "$pw")
+             (VariableNode "$g1")
+	 	    (VariableNode "$g2")
+	 	  ))
+    )
+)
+(define (generate-interactors gene concept gene1 gene2)
+    (if (string-prefix? "GO:" (cog-name concept))
+        (ListLink)
+        (EvaluationLink
+            (PredicateNode "has_biogrid_crossannotation")
+            (ListLink
+                gene
+                (EvaluationLink
+                (PredicateNode "has_pubmedID")
+                    (ListLink 
+                        (EvaluationLink (PredicateNode "interacts_with") (ListLink gene1 gene2))
+                        (find-pubmed-id gene1 gene2)  
+                    )
+                )
+            )
+        )
+    )
+)
 
 (cog-execute! biogrid_interaction_rule)
 (cog-execute! member_rule)
@@ -272,3 +317,4 @@
 (cog-execute! location_rule)
 (cog-execute! biogird_id_rule)
 (cog-execute! entrez_id_rule)
+(cog-execute! pathway_biogrid_crossannotation_rule)

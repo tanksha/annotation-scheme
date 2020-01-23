@@ -107,7 +107,6 @@ atomspace."
                   (atoms '()) 
                   (biogrid-genes '())
                   (biogrid-pairs '())
-                  (biogrid-pairs-pathway '())
                   (annotation "")
                   (prev-annotation "")
               )

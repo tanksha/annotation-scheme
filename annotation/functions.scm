@@ -612,30 +612,20 @@
 ))
 
 ;; Gene interactors for genes in the pathway
-(define-public pathway-gene-interactors 
-  (lambda (pw)
-  (cog-outgoing-set (cog-execute! (BindLink
-    (VariableList
-     (TypedVariable (VariableNode "$g1") (Type 'GeneNode))
-     (TypedVariable (VariableNode "$g2") (Type 'GeneNode))
-     (TypedVariable (VariableNode "$p1") (Type 'MoleculeNode))
-     (TypedVariable (VariableNode "$p2") (Type 'MoleculeNode)))
-   (AndLink
-     (MemberLink (VariableNode "$p1") pw)
-     (MemberLink (VariableNode "$p2") pw)
-     (EvaluationLink (PredicateNode "expresses") (ListLink (VariableNode "$g1") (VariableNode "$p1")))
-     (EvaluationLink (PredicateNode "expresses") (ListLink (VariableNode "$g2") (VariableNode "$p2")))
-     (EvaluationLink (PredicateNode "interacts_with") (ListLink (VariableNode "$g1") (VariableNode "$g2")))
-   )
-  (ExecutionOutputLink
-    (GroundedSchemaNode "scm: generate-interactors")
-		  (ListLink
-        pw
-        (VariableNode "$g1")
-		    (VariableNode "$g2")
-		  ))
-  ))
-)))
+(define-public pathway-gene-interactors
+  (lambda (gene)
+    (cog-outgoing-set (cog-execute! (GetLink
+      (VariableNode "$interaction")
+      (EvaluationLink
+      (PredicateNode "has_biogrid_crossannotation")
+        (ListLink
+          gene
+          (VariableNode "$interaction")
+        )
+      )
+    )
+    ))
+))
 
 (define-public find-protein-form
   (lambda (gene)
@@ -782,41 +772,6 @@
   )
 )
 
-(define-public (generate-interactors path var1 var2)
-      (if (not (string=? (cog-name var1) (cog-name var2)))
-      
-      (let ([pairs (find (lambda (x) (or (equal? (cons (cog-name var1) (cog-name var2)) x)
-                                          (equal? (cons (cog-name var2) (cog-name var1)) x)
-                                      )
-        
-                  ) (biogrid-pairs-pathway))]
-          )
-          (if pairs
-            '()
-            (let (
-              [output (find-pubmed-id var1 var2)]
-              )
-                (biogrid-pairs-pathway (append (biogrid-pairs-pathway) (list (cons (cog-name var1) (cog-name var2)))))
-               (if (null? output) 
-                (EvaluationLink 
-                  (PredicateNode "interacts_with") 
-                  (ListLink var1 var2))
-                (EvaluationLink
-                  (PredicateNode "has_pubmedID")
-                  (ListLink 
-                    (EvaluationLink 
-                        (PredicateNode "interacts_with") 
-                        (ListLink var1 var2))  
-                          output)
-                        )
-                )
-              )
-            )
-          )
-        '()
-    )
-
-)
 
 ;;                           
 (define-public (find-pubmed-id gene-a gene-b)

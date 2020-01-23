@@ -48,6 +48,9 @@
                 (set! pwlst (append pwlst (cdr res)))
               )))
           )(string-split pathway #\ ))
+      (if (= biogrid 1)
+        (set! result (append result (list (ListLink (ConceptNode "biogrid-interaction-annotation") (pathway-gene-interactors (GeneNode gene)) (ListLink (ConceptNode "gene-pathway-annotation"))))))
+      )
     ) gene_nodes)
 
     (let (
@@ -81,8 +84,6 @@
           (if (not (null? prots))
             (set! tmp (append tmp prots))
             (set! tmp (append tmp (node-info node))))))
-      (if (= biogrid 1)
-        (set! tmp (append tmp (pathway-gene-interactors node))))
         (if (null? tmp)
           '()
           tmp
@@ -119,8 +120,6 @@
                 (set! tmp (append tmp prots))
                 (set! tmp (append tmp (node-info node)))))
             )
-          (if (= biogrid 1)
-            (set! tmp (append tmp (pathway-gene-interactors node))))
           (if (equal? sm "True")
             (set! tmp (append tmp (cog-outgoing-set (find-mol node "ChEBI"))))
           )
