@@ -6,11 +6,16 @@
 	#:use-module (annotation main)
 	#:use-module (annotation functions)
 	#:use-module (annotation util)
+    #:use-module (annotation gene-go)
+    #:use-module (annotation gene-pathway)
+    #:use-module (annotation biogrid)
+    #:use-module (annotation parser)
+	#:use-module (annotation rna)
+    #:use-module (json)
 )
 
 (test-begin "main")
 
-(primitive-load-path "opencog_deps")
 ;; Load test atomspace
 (primitive-load-path "tests/sample_dataset.scm")
 
@@ -29,6 +34,7 @@
 
 (test-equal "protein-goterm" 86 (length (cog-outgoing-set (find-proteins-goterm (GeneNode "IGF1") namespace 0))))
 
+;; Apply PLN rule to replace outdated gene symbols without current and test
 (primitive-load-path "annotation/pln_rule.scm")
 
 (test-equal "current_vs_prev_symbols" (ListLink) (find-protein-form (GeneNode "NOV")))

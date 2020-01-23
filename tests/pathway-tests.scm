@@ -14,8 +14,8 @@
 (test-begin "pathway")
 ;; Load test atomspace
 (primitive-load-path "tests/sample_dataset.scm")
-
-(test-equal "pathway-interactors" 3 (length (pathway-gene-interactors  (ConceptNode "R-HSA-114608"))))
+(primitive-load-path "annotation/pln_rule.scm")
+(test-equal "pathway-interactors" 24 (length (pathway-gene-interactors  (GeneNode "IGF1"))))
 
 (clear)
 (test-end "pathway")
